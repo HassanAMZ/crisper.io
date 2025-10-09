@@ -1,66 +1,108 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import * as TabsPrimitive from "@radix-ui/react-tabs"
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { AnimatePresence, motion } from "motion/react";
+import React, { useEffect, useRef, useState } from "react";
 
-import { cn } from "@/lib/utils"
+export const Tabs = ({
+  tabs: propTabs,
+  containerClassName,
+  activeTabClassName,
+  tabClassName,
+  contentClassName,
+}: {
+  tabs: {
+    title: string;
+    value: string;
+    content?: React.ReactNode;
+    icon?: React.ReactNode;
+    description?: string;
+  }[];
+  containerClassName?: string;
+  activeTabClassName?: string;
+  tabClassName?: string;
+  contentClassName?: string;
+}) => {
+  const [active, setActive] = useState(propTabs[0]);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [indicatorStyle, setIndicatorStyle] = useState<{
+    left: number;
+    width: number;
+    height: number;
+  }>({ left: 0, width: 0, height: 0 });
 
-function Tabs({
-  className,
-  ...props
-}: React.ComponentProps<typeof TabsPrimitive.Root>) {
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  useEffect(() => {
+    const updateIndicator = () => {
+      const activeTab = tabRefs.current[activeIndex];
+      if (activeTab) {
+        const { offsetLeft, offsetWidth, offsetHeight } = activeTab;
+        setIndicatorStyle({
+          left: offsetLeft,
+          width: offsetWidth,
+          height: offsetHeight,
+        });
+      }
+    };
+
+    updateIndicator();
+    window.addEventListener("resize", updateIndicator);
+    return () => window.removeEventListener("resize", updateIndicator);
+  }, [activeIndex]);
+
   return (
-    <TabsPrimitive.Root
-      data-slot="tabs"
-      className={cn("flex flex-col gap-2", className)}
-      {...props}
-    />
-  )
-}
+    <div className={cn("relative", containerClassName)}>
+      <div className="flex items-stretch w-full gap-4 overflow-x-auto">
+        {propTabs.map((tab, idx) => (
+          <Button
+            key={tab.value}
+            ref={(el) => {
+              tabRefs.current[idx] = el;
+            }}
+            onClick={() => {
+              setActive(tab);
+              setActiveIndex(idx);
+            }}
+            variant={active.value === tab.value ? "default" : "outline"}
+            className={cn(
+              "relative transition-all duration-200 ease-out cursor-pointer px-3 py-3 flex-shrink-0 min-w-fit",
+              "md:flex-1",
+              tabClassName,
+              active.value === tab.value && activeTabClassName
+            )}
+          >
+            <div className="flex flex-col items-center gap-2 justify-center ">
+              {tab.icon && (
+                <div className="size-12 flex items-center justify-center bg-background/20 backdrop-blur-sm rounded-lg p-3 shadow border border-border/50">
+                  {tab.icon}
+                </div>
+              )}
+              <span className="text-sm font-semibold">{tab.title}</span>
+              {tab.description && (
+                <span className="text-xs text-center leading-tight">
+                  {tab.description}
+                </span>
+              )}
+            </div>
+          </Button>
+        ))}
+      </div>
 
-function TabsList({
-  className,
-  ...props
-}: React.ComponentProps<typeof TabsPrimitive.List>) {
-  return (
-    <TabsPrimitive.List
-      data-slot="tabs-list"
-      className={cn(
-        "bg-muted text-muted-foreground inline-flex h-9 w-fit items-center justify-center rounded-lg p-[3px]",
-        className
-      )}
-      {...props}
-    />
-  )
-}
-
-function TabsTrigger({
-  className,
-  ...props
-}: React.ComponentProps<typeof TabsPrimitive.Trigger>) {
-  return (
-    <TabsPrimitive.Trigger
-      data-slot="tabs-trigger"
-      className={cn(
-        "data-[state=active]:bg-background dark:data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-        className
-      )}
-      {...props}
-    />
-  )
-}
-
-function TabsContent({
-  className,
-  ...props
-}: React.ComponentProps<typeof TabsPrimitive.Content>) {
-  return (
-    <TabsPrimitive.Content
-      data-slot="tabs-content"
-      className={cn("flex-1 outline-none", className)}
-      {...props}
-    />
-  )
-}
-
-export { Tabs, TabsList, TabsTrigger, TabsContent }
+      <div className={cn("mt-4", contentClassName)}>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={active.value}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+          >
+            {active.content}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+};
