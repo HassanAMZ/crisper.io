@@ -81,7 +81,7 @@ export const Tabs = ({
               )}
               <span className="text-sm font-semibold">{tab.title}</span>
               {tab.description && (
-                <span className="text-xs text-center leading-tight">
+                <span className="hidden text-xs text-center leading-tight lg:block">
                   {tab.description}
                 </span>
               )}

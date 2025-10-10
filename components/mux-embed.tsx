@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { FC, memo } from "react";
+import Video from "next-video";
 
 // Dynamically import MuxPlayer to avoid SSR issues
 const MuxPlayer = dynamic(() => import("@mux/mux-player-react"), {
@@ -41,14 +42,14 @@ const MuxEmbed: FC<MuxEmbedProps> = ({
   return (
     <div className={className} id={id}>
       <div className="relative overflow-hidden">
-        <MuxPlayer
+        <Video
           streamType="on-demand"
           playbackId={embedId}
           poster={posterUrl}
           muted
           playsInline
           style={{
-            borderRadius: "1rem",
+            borderRadius: "0.5rem",
             aspectRatio: verticalVideo ? "9/16" : "16/9",
             width: "100%",
             height: "100%",

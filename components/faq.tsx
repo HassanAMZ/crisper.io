@@ -55,36 +55,24 @@ export function FAQ() {
   return (
     <section className="px-3">
       <Container>
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
-            Frequently Asked Questions
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Everything you need to know about our platform. Can't find the
-            answer you're looking for? Please chat with our friendly team.
-          </p>
-        </div>
-
-        <div className="max-w-4xl mx-auto">
-          <Accordion type="single" collapsible className="space-y-4">
-            {faqs.map((faq, index) => (
-              <AccordionItem
-                key={index}
-                value={`item-${index}`}
-                className="border border-border rounded-lg px-6 py-2 bg-card"
-              >
-                <AccordionTrigger className="text-left hover:no-underline">
-                  <span className="text-lg font-semibold text-foreground">
-                    {faq.question}
-                  </span>
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
+        <Accordion type="single" collapsible className="space-y-4">
+          {faqs.map((faq, index) => (
+            <AccordionItem
+              key={index}
+              value={`item-${index}`}
+              className="border border-border rounded-lg px-6 py-2 bg-card"
+            >
+              <AccordionTrigger className="text-left hover:no-underline">
+                <span className="text-lg font-semibold text-foreground">
+                  {faq.question}
+                </span>
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground leading-relaxed">
+                {faq.answer}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
       </Container>
     </section>
   );

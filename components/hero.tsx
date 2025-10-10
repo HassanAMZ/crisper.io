@@ -12,6 +12,10 @@ import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { BackgroundBeams } from "./ui/background-beams";
+import Video from "next-video";
+import testVideo from "@/videos/test-video.mp4";
+import testVideoPoster from "@/videos/test-video.mp4.json";
+import { Card } from "./ui/card";
 
 interface HeroProps {
   heading?: string;
@@ -52,70 +56,64 @@ export default function Hero({
 
   return (
     <section className="px-3 relative">
-      <Container className="grid gap-4 rounded bg-muted px-2 py-6 relative overflow-hidden">
-        <div className="mx-auto grid max-w-5xl place-content-center gap-6 md:gap-8 relative z-10">
-          <h2 className="mx-auto text-center">
-            Losing 60% of ad spend?{" "}
-            <span className="font-bold underline">
-              Get every conversion back.
-            </span>
-          </h2>
+      <Container className="relative overflow-hidden">
+        <div className="mx-auto grid grid-cols-3 gap-4 relative z-10">
+          <div className="col-span-2 flex flex-col justify-center gap-4 max-w-xl">
+            <h1 className="">
+              Losing 60% of ad spend?{" "}
+              <span className="font-bold underline">
+                Get every conversion back.
+              </span>
+            </h1>
 
-          <MuxEmbed embedId={videoEmbedId} className="mx-auto max-w-4xl" />
-
-          <h4 className="mx-auto max-w-2xl text-center">{subheading}</h4>
-          <div className="flex flex-col items-center justify-center gap-4 md:flex-row">
-            <Button size="lg" asChild>
-              <Link href={primaryButtonLink}>{primaryButtonText}</Link>
-            </Button>
-            <Button
-              size="lg"
-              variant="secondary"
-              asChild
-              className="hidden md:flex"
-            >
-              <Link href={secondaryButtonLink}>{secondaryButtonText}</Link>
-            </Button>
-          </div>
-
-          {(showAvatars || showRating) && (
-            <div className="mx-auto flex flex-col items-center gap-2">
-              {showAvatars && (
-                <AvatarGroup>
-                  {placeholderAvatars.map((avatar) => (
-                    <div key={avatar.id}>
-                      <Avatar className="border-2 border-primary bg-background">
-                        <Image
-                          src={avatar.image}
-                          alt={`@${avatar.name}`}
-                          width={1080}
-                          height={1080}
-                          className="aspect-square size-full object-cover"
-                        />
-                        <AvatarFallback>{avatar.name[0]}</AvatarFallback>
-                        <AvatarGroupTooltip>
-                          <p>{avatar.name}</p>
-                        </AvatarGroupTooltip>
-                      </Avatar>
-                    </div>
-                  ))}
-                </AvatarGroup>
-              )}
-
-              {showRating && (
-                <div className="flex flex-col items-center gap-2">
-                  <div className="flex">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} className="fill-amber-400 text-amber-400" />
-                    ))}
-                  </div>
-                  <h4 className="text-center text-sm text-muted-foreground">
-                    {ratingText}
-                  </h4>
-                </div>
-              )}
+            <h4 className="">{subheading}</h4>
+            <div className="flex flex-col items-center justify-start gap-4 md:flex-row">
+              <Button size="lg" asChild>
+                <Link href={primaryButtonLink}>{primaryButtonText}</Link>
+              </Button>
+              <Button
+                size="lg"
+                variant="secondary"
+                asChild
+                className="hidden md:flex"
+              >
+                <Link href={secondaryButtonLink}>{secondaryButtonText}</Link>
+              </Button>
             </div>
-          )}
+
+            {(showAvatars || showRating) && (
+              <div className=" flex-col items-start gap-2">
+                {showAvatars && (
+                  <AvatarGroup>
+                    {placeholderAvatars.map((avatar) => (
+                      <div key={avatar.id}>
+                        <Avatar className="border-2 border-primary bg-background">
+                          <Image
+                            src={avatar.image}
+                            alt={`@${avatar.name}`}
+                            width={1080}
+                            height={1080}
+                            className="aspect-square size-full object-cover"
+                          />
+                          <AvatarFallback>{avatar.name[0]}</AvatarFallback>
+                          <AvatarGroupTooltip>
+                            <p>{avatar.name}</p>
+                          </AvatarGroupTooltip>
+                        </Avatar>
+                      </div>
+                    ))}
+                  </AvatarGroup>
+                )}
+              </div>
+            )}
+          </div>
+          <Card className="p-0 rounded">
+            <MuxEmbed
+              embedId={videoEmbedId}
+              verticalVideo={true}
+              // className="p-4"
+            />
+          </Card>
         </div>
         <BackgroundBeams />
       </Container>

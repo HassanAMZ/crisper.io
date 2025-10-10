@@ -89,18 +89,8 @@ export function FeatureTabs() {
   ];
 
   return (
-    <section className="px-3 py-16">
+    <section className="px-3">
       <Container>
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
-            Powerful Features for Modern Support
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Everything you need to deliver exceptional customer support and grow
-            your business.
-          </p>
-        </div>
-
         <div className="[perspective:1000px] relative flex flex-col max-w-7xl mx-auto w-full items-start justify-start">
           <Tabs
             tabs={tabs}
