@@ -40,7 +40,7 @@ const ListItem = React.forwardRef<HTMLAnchorElement, ListItemProps>(
           ref={ref}
           href={href || "#"}
           className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground cursor-pointer",
+            "block select-none space-y-1 rounded p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground cursor-pointer",
             className
           )}
           {...props}
@@ -156,7 +156,7 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center gap-2">
-            <AnimatedThemeToggler className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 w-9 cursor-pointer" />
+            <AnimatedThemeToggler className="inline-flex items-center justify-center rounded text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 w-9 cursor-pointer" />
             <div className="hidden items-center gap-2 sm:flex">
               <Button variant="secondary" asChild>
                 <Link href="/login">Login</Link>
@@ -185,7 +185,7 @@ export function Navbar() {
                     <Link
                       href="/how-it-works"
                       onClick={() => setIsOpen(false)}
-                      className="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-accent cursor-pointer"
+                      className="flex items-center gap-2 rounded px-2 py-2 text-sm hover:bg-accent cursor-pointer"
                     >
                       <Lightbulb className="size-4 text-muted-foreground" />
                       How it works
@@ -193,7 +193,7 @@ export function Navbar() {
                     <Link
                       href="/ad-revenue-booster"
                       onClick={() => setIsOpen(false)}
-                      className="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-accent cursor-pointer"
+                      className="flex items-center gap-2 rounded px-2 py-2 text-sm hover:bg-accent cursor-pointer"
                     >
                       <TrendingUp className="size-4 text-muted-foreground" />
                       Ad revenue booster
@@ -207,7 +207,7 @@ export function Navbar() {
                     <Link
                       href="/about"
                       onClick={() => setIsOpen(false)}
-                      className="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-accent cursor-pointer"
+                      className="flex items-center gap-2 rounded px-2 py-2 text-sm hover:bg-accent cursor-pointer"
                     >
                       <Users className="size-4 text-muted-foreground" />
                       About us
@@ -215,7 +215,7 @@ export function Navbar() {
                     <Link
                       href="/blog"
                       onClick={() => setIsOpen(false)}
-                      className="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-accent cursor-pointer"
+                      className="flex items-center gap-2 rounded px-2 py-2 text-sm hover:bg-accent cursor-pointer"
                     >
                       <FileText className="size-4 text-muted-foreground" />
                       Blog
@@ -223,7 +223,7 @@ export function Navbar() {
                     <Link
                       href="/support"
                       onClick={() => setIsOpen(false)}
-                      className="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-accent cursor-pointer"
+                      className="flex items-center gap-2 rounded px-2 py-2 text-sm hover:bg-accent cursor-pointer"
                     >
                       <LifeBuoy className="size-4 text-muted-foreground" />
                       Support / Help center
@@ -234,14 +234,14 @@ export function Navbar() {
                     <Link
                       href="/integration"
                       onClick={() => setIsOpen(false)}
-                      className="rounded-md px-2 py-2 text-sm hover:bg-accent cursor-pointer"
+                      className="rounded px-2 py-2 text-sm hover:bg-accent cursor-pointer"
                     >
                       Integration
                     </Link>
                     <Link
                       href="/pricing"
                       onClick={() => setIsOpen(false)}
-                      className="rounded-md px-2 py-2 text-sm hover:bg-accent cursor-pointer"
+                      className="rounded px-2 py-2 text-sm hover:bg-accent cursor-pointer"
                     >
                       Pricing
                     </Link>

@@ -75,7 +75,7 @@ export const Tabs = ({
           >
             <div className="flex flex-col items-center gap-2 justify-center ">
               {tab.icon && (
-                <div className="size-12 flex items-center justify-center bg-background/20 backdrop-blur-sm rounded-lg p-3 shadow border border-border/50">
+                <div className="size-12 flex items-center justify-center bg-background/20 backdrop-blur-sm rounded p-3 shadow border border-border/50">
                   {tab.icon}
                 </div>
               )}

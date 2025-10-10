@@ -46,7 +46,7 @@ export function RevenueCalculator() {
                 step="1000"
                 value={adSpend}
                 onChange={(e) => setAdSpend(Number(e.target.value))}
-                className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer slider"
+                className="w-full h-2 bg-muted rounded appearance-none cursor-pointer slider"
               />
             </div>
           </div>

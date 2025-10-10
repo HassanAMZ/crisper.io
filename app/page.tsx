@@ -9,17 +9,19 @@ import { FAQ } from "@/components/faq";
 import { OrbitingCirclesDemo } from "@/components/orbiting-circles-platforms-demo";
 import { Container } from "@/components/ui/container";
 import { AnimatedBeamMultipleOutputDemo } from "@/components/animated-beam-platforms-demo";
-import { AnimatedListDemo } from "@/components/ui/animated-list-demo";
+import { AnimatedListDemo } from "@/components/magic-ui/animated-list-demo";
 import { Footer } from "@/components/footer";
+import { BentoDemo } from "@/components/magic-ui/bento-demo";
 
 export default function Home() {
   return (
     <div className="min-h-screen space-y-4">
       <Navbar />
       <Hero />
-      <BentoGridThirdDemo />
-      <DottedGlowBackgroundDemoSecond />
+      <BentoDemo />
       {/* <RevenueCalculator /> */}
+      <DottedGlowBackgroundDemoSecond />
+      <BentoGridThirdDemo />
       <Container className="grid md:grid-cols-2 gap-4 grid-cols-1">
         <OrbitingCirclesDemo />
         <AnimatedListDemo />

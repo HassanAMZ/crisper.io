@@ -71,7 +71,7 @@ const Testimonial01 = () => (
         {testimonials.map((testimonial) => (
           <div
             key={testimonial.id}
-            className="mb-8 bg-accent rounded-xl p-6 break-inside-avoid"
+            className="mb-8 bg-accent rounded p-6 break-inside-avoid"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
