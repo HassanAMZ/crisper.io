@@ -24,7 +24,7 @@ import {
   LifeBuoy,
   Menu,
 } from "lucide-react";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 
 interface ListItemProps extends React.ComponentPropsWithoutRef<"a"> {
   title: string;
@@ -72,7 +72,7 @@ export function Navbar() {
                 height={28}
                 className="rounded"
               />
-              <span className="text-foreground font-semibold">crisper.io</span>
+              <span className="text-foreground font-medium">crisper.io</span>
             </Link>
 
             <NavigationMenu className="hidden lg:flex">
@@ -80,7 +80,7 @@ export function Navbar() {
                 <NavigationMenuItem>
                   <NavigationMenuTrigger>Product</NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <ul className="grid w-[240px] gap-1 p-2">
+                    <ul className="grid w-60 gap-1 p-2">
                       <ListItem
                         href="/how-it-works"
                         title="How it works"
@@ -102,7 +102,7 @@ export function Navbar() {
                 <NavigationMenuItem>
                   <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <ul className="grid w-[240px] gap-1 p-2">
+                    <ul className="grid w-60 gap-1 p-2">
                       <ListItem
                         href="/about"
                         title="About us"
@@ -129,38 +129,34 @@ export function Navbar() {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuLink asChild>
-                    <Link
-                      href="/integration"
-                      className={cn(
-                        navigationMenuTriggerStyle(),
-                        "cursor-pointer"
-                      )}
-                    >
-                      Integration
-                    </Link>
-                  </NavigationMenuLink>
+                  <Link
+                    href="/integration"
+                    className={cn(
+                      navigationMenuTriggerStyle(),
+                      "cursor-pointer"
+                    )}
+                  >
+                    Integration
+                  </Link>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuLink asChild>
-                    <Link
-                      href="/pricing"
-                      className={cn(
-                        navigationMenuTriggerStyle(),
-                        "cursor-pointer"
-                      )}
-                    >
-                      Pricing
-                    </Link>
-                  </NavigationMenuLink>
+                  <Link
+                    href="/pricing"
+                    className={cn(
+                      navigationMenuTriggerStyle(),
+                      "cursor-pointer"
+                    )}
+                  >
+                    Pricing
+                  </Link>
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
           </div>
 
           <div className="flex items-center gap-2">
-            <ThemeToggle />
+            <AnimatedThemeToggler className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 w-9 cursor-pointer" />
             <div className="hidden items-center gap-2 sm:flex">
               <Button variant="secondary" asChild>
                 <Link href="/login">Login</Link>
@@ -179,7 +175,7 @@ export function Navbar() {
               </SheetTrigger>
               <SheetContent
                 side="right"
-                className="w-[300px] sm:w-[400px] flex flex-col"
+                className="w-[90vw] max-w-sm sm:max-w-md flex flex-col"
               >
                 <nav className="flex flex-col gap-4 mt-8 px-2 flex-1">
                   <div className="flex flex-col gap-2">

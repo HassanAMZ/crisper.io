@@ -6,6 +6,11 @@ import { DottedGlowBackgroundDemoSecond } from "@/components/dotted-glow-backgro
 import { RevenueCalculator } from "@/components/revenue-calculator";
 import { FeatureTabs } from "@/components/feature-tabs";
 import { FAQ } from "@/components/faq";
+import { OrbitingCirclesDemo } from "@/components/orbiting-circles-platforms-demo";
+import { Container } from "@/components/ui/container";
+import { AnimatedBeamMultipleOutputDemo } from "@/components/animated-beam-platforms-demo";
+import { AnimatedListDemo } from "@/components/ui/animated-list-demo";
+import { Footer } from "@/components/footer";
 
 export default function Home() {
   return (
@@ -15,8 +20,13 @@ export default function Home() {
       <BentoGridThirdDemo />
       <DottedGlowBackgroundDemoSecond />
       {/* <RevenueCalculator /> */}
+      <Container className="grid md:grid-cols-2 gap-4 grid-cols-1">
+        <OrbitingCirclesDemo />
+        <AnimatedListDemo />
+      </Container>
       <FeatureTabs />
       <FAQ />
+      <Footer />
     </div>
   );
 }

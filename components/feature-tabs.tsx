@@ -17,7 +17,7 @@ export function FeatureTabs() {
     {
       title: "AI Helpdesk",
       value: "ai-helpdesk",
-      icon: <Brain className="h-5 w-5" />,
+      icon: <Brain className="icon-md" />,
       description: " superpowers to your teams",
       content: (
         <MuxEmbed
@@ -29,7 +29,7 @@ export function FeatureTabs() {
     {
       title: "Chat Widget",
       value: "chat-widget",
-      icon: <MessageCircle className="h-5 w-5" />,
+      icon: <MessageCircle className="icon-md" />,
       description: "Support from your website",
       content: (
         <MuxEmbed
@@ -41,7 +41,7 @@ export function FeatureTabs() {
     {
       title: "Shared Inbox",
       value: "shared-inbox",
-      icon: <Inbox className="h-5 w-5" />,
+      icon: <Inbox className="icon-md" />,
       description: "Centralize your  communications",
       content: (
         <MuxEmbed
@@ -53,7 +53,7 @@ export function FeatureTabs() {
     {
       title: "Knowledge",
       value: "knowledge-base",
-      icon: <BookOpen className="h-5 w-5" />,
+      icon: <BookOpen className="icon-md" />,
       description: "Make your customers",
       content: (
         <MuxEmbed
@@ -65,7 +65,7 @@ export function FeatureTabs() {
     {
       title: "Support CRM",
       value: "support-crm",
-      icon: <Users className="h-5 w-5" />,
+      icon: <Users className="icon-md" />,
       description: "Organize your customer data",
       content: (
         <MuxEmbed
@@ -77,7 +77,7 @@ export function FeatureTabs() {
     {
       title: "Support ",
       value: "support-analytics",
-      icon: <BarChart3 className="h-5 w-5" />,
+      icon: <BarChart3 className="icon-md" />,
       description: "Monitor and track performance",
       content: (
         <MuxEmbed
@@ -91,6 +91,12 @@ export function FeatureTabs() {
   return (
     <section className="px-3">
       <Container>
+        <div className="text-center mb-12 max-w-3xl mx-auto">
+          <h2>Powerful Features</h2>
+          <h4 className="mt-4">
+            Everything you need to deliver exceptional customer support
+          </h4>
+        </div>
         <div className="[perspective:1000px] relative flex flex-col max-w-7xl mx-auto w-full items-start justify-start">
           <Tabs
             tabs={tabs}

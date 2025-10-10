@@ -25,10 +25,10 @@ export function DottedGlowBackgroundDemoSecond() {
 
         <div className="relative z-10 flex w-full flex-col items-center justify-between space-y-6 px-8 py-16 text-center md:flex-row">
           <div>
-            <h2 className="text-center text-4xl font-normal tracking-tight text-foreground sm:text-5xl md:text-left">
-              Ready to buy <span className="font-bold">Aceternity Pro</span>?
+            <h2 className="text-center text-foreground md:text-left">
+              Ready to buy <span>Aceternity Pro</span>?
             </h2>
-            <p className="mt-4 max-w-lg text-center text-base text-muted-foreground md:text-left">
+            <p className="mt-4 max-w-lg text-center text-muted-foreground md:text-left">
               Unlock premium components, advanced animations, and exclusive
               templates to build stunning modern interfaces.
             </p>

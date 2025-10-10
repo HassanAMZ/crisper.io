@@ -12,10 +12,8 @@ import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { BackgroundBeams } from "./ui/background-beams";
-import Video from "next-video";
-import testVideo from "@/videos/test-video.mp4";
-import testVideoPoster from "@/videos/test-video.mp4.json";
 import { Card } from "./ui/card";
+import { AnimatedBeamMultipleOutputDemo } from "./animated-beam-platforms-demo";
 
 interface HeroProps {
   heading?: string;
@@ -57,32 +55,27 @@ export default function Hero({
   return (
     <section className="px-3 relative">
       <Container className="relative overflow-hidden">
-        <div className="mx-auto grid grid-cols-3 gap-4 relative z-10">
-          <div className="col-span-2 flex flex-col justify-center gap-4 max-w-xl">
-            <h1 className="">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-4 relative z-10">
+          <div className="col-span-1 flex flex-col justify-center items-center md:items-start gap-4 w-full md:max-w-xl">
+            <h1 className="text-center md:text-left">
               Losing 60% of ad spend?{" "}
-              <span className="font-bold underline">
+              <span className="underline decoration-primary">
                 Get every conversion back.
               </span>
             </h1>
 
-            <h4 className="">{subheading}</h4>
-            <div className="flex flex-col items-center justify-start gap-4 md:flex-row">
-              <Button size="lg" asChild>
+            <h4 className="text-center md:text-left">{subheading}</h4>
+            <div className="flex flex-row items-center justify-center md:justify-start gap-4 flex-wrap">
+              <Button size="lg" asChild className="w-fit">
                 <Link href={primaryButtonLink}>{primaryButtonText}</Link>
               </Button>
-              <Button
-                size="lg"
-                variant="secondary"
-                asChild
-                className="hidden md:flex"
-              >
+              <Button size="lg" variant="secondary" asChild className="w-fit">
                 <Link href={secondaryButtonLink}>{secondaryButtonText}</Link>
               </Button>
             </div>
 
             {(showAvatars || showRating) && (
-              <div className=" flex-col items-start gap-2">
+              <div className="flex flex-col items-center md:items-start gap-2">
                 {showAvatars && (
                   <AvatarGroup>
                     {placeholderAvatars.map((avatar) => (
@@ -104,16 +97,25 @@ export default function Hero({
                     ))}
                   </AvatarGroup>
                 )}
+                {showRating && (
+                  <div className="flex flex-col md:flex-row items-center gap-2">
+                    <div className="flex items-center">
+                      {[...Array(5)].map((_, index) => (
+                        <Star
+                          key={`star-${index}`}
+                          className="size-4 fill-accent text-accent"
+                        />
+                      ))}
+                    </div>
+                    <p className="text-sm text-muted-foreground text-center md:text-left">
+                      {ratingText}
+                    </p>
+                  </div>
+                )}
               </div>
             )}
           </div>
-          <Card className="p-0 rounded">
-            <MuxEmbed
-              embedId={videoEmbedId}
-              verticalVideo={true}
-              // className="p-4"
-            />
-          </Card>
+          <AnimatedBeamMultipleOutputDemo />
         </div>
         <BackgroundBeams />
       </Container>

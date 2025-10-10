@@ -1,6 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 import React from "react";
+import Image from "next/image";
 import {
   IconBoxAlignRightFilled,
   IconClipboardCopy,
@@ -17,9 +18,9 @@ export function BentoGridThirdDemo() {
     <section className="px-3">
       <Container>
         <BentoGrid className="md:auto-rows-[20rem]">
-          {items.map((item, i) => (
+          {items.map((item, index) => (
             <BentoGridItem
-              key={i}
+              key={`bento-item-${index}`}
               title={item.title}
               description={item.description}
               header={item.header}
@@ -119,12 +120,12 @@ const SkeletonTwo = () => {
       whileHover="hover"
       className="flex flex-1 w-full h-full min-h-[6rem] flex-col space-y-2"
     >
-      {arr.map((_, i) => (
+      {arr.map((_, index) => (
         <motion.div
-          key={"skelenton-two" + i}
+          key={`skeleton-two-${index}`}
           variants={variants}
           style={{
-            maxWidth: widths[i] + "%",
+            maxWidth: widths[index] + "%",
           }}
           className="flex flex-row rounded-full border border-border p-2 items-center space-x-2 bg-muted w-full h-4"
         ></motion.div>
@@ -192,12 +193,12 @@ const SkeletonFour = () => {
         variants={first}
         className="h-full w-1/3 rounded-2xl bg-card p-4 border border-border flex flex-col items-center justify-center"
       >
-        <img
+        <Image
           src="https://pbs.twimg.com/profile_images/1417752099488636931/cs2R59eW_400x400.jpg"
           alt="avatar"
-          height="100"
-          width="100"
-          className="rounded-full h-10 w-10"
+          width={40}
+          height={40}
+          className="rounded-full size-10"
         />
         <p className="sm:text-sm text-xs text-center font-semibold text-muted-foreground mt-4">
           Just code in Vanilla Javascript
@@ -207,12 +208,12 @@ const SkeletonFour = () => {
         </p>
       </motion.div>
       <motion.div className="h-full relative z-20 w-1/3 rounded-2xl bg-card p-4 border border-border flex flex-col items-center justify-center">
-        <img
+        <Image
           src="https://pbs.twimg.com/profile_images/1417752099488636931/cs2R59eW_400x400.jpg"
           alt="avatar"
-          height="100"
-          width="100"
-          className="rounded-full h-10 w-10"
+          width={40}
+          height={40}
+          className="rounded-full size-10"
         />
         <p className="sm:text-sm text-xs text-center font-semibold text-muted-foreground mt-4">
           Tailwind CSS is cool, you know
@@ -225,12 +226,12 @@ const SkeletonFour = () => {
         variants={second}
         className="h-full w-1/3 rounded-2xl bg-card p-4 border border-border flex flex-col items-center justify-center"
       >
-        <img
+        <Image
           src="https://pbs.twimg.com/profile_images/1417752099488636931/cs2R59eW_400x400.jpg"
           alt="avatar"
-          height="100"
-          width="100"
-          className="rounded-full h-10 w-10"
+          width={40}
+          height={40}
+          className="rounded-full size-10"
         />
         <p className="sm:text-sm text-xs text-center font-semibold text-muted-foreground mt-4">
           I love angular, RSC, and Redux.
@@ -278,12 +279,12 @@ const SkeletonFive = () => {
         variants={variants}
         className="flex flex-row rounded-2xl border border-border p-2 items-start space-x-2 bg-card"
       >
-        <img
+        <Image
           src="https://pbs.twimg.com/profile_images/1417752099488636931/cs2R59eW_400x400.jpg"
           alt="avatar"
-          height="100"
-          width="100"
-          className="rounded-full h-10 w-10"
+          width={40}
+          height={40}
+          className="rounded-full size-10"
         />
         <p className="text-xs text-muted-foreground">
           There are a lot of cool framerworks out there like React, Angular,
