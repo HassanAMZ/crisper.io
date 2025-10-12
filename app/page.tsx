@@ -17,6 +17,7 @@ export default function Home() {
   return (
     <div className="min-h-screen space-y-4">
       <Navbar />
+
       <Hero />
       <BentoDemo />
       {/* <RevenueCalculator /> */}
