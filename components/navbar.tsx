@@ -23,8 +23,18 @@ import {
   FileText,
   LifeBuoy,
   Menu,
+  LayoutDashboard,
 } from "lucide-react";
 import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
+
+interface AuthStatus {
+  authenticated: boolean;
+  user?: {
+    username?: string;
+    name?: string;
+    email?: string;
+  };
+}
 
 interface ListItemProps extends React.ComponentPropsWithoutRef<"a"> {
   title: string;
@@ -58,6 +68,28 @@ ListItem.displayName = "ListItem";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
+  const [authStatus, setAuthStatus] = React.useState<AuthStatus>({
+    authenticated: false,
+  });
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    // Check authentication status
+    fetch("/api/auth/check")
+      .then((res) => res.json())
+      .then((data) => {
+        setAuthStatus(data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error checking auth:", error);
+        setIsLoading(false);
+      });
+  }, []);
+
+  const dashboardUrl = authStatus.user?.username
+    ? `https://app.crisper.io/${authStatus.user.username}`
+    : "https://app.crisper.io";
 
   return (
     <header className="sticky top-0 z-50 w-full pt-3 px-3">
@@ -158,12 +190,27 @@ export function Navbar() {
           <div className="flex items-center gap-2">
             <AnimatedThemeToggler className="inline-flex items-center justify-center rounded text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 w-9 cursor-pointer" />
             <div className="hidden items-center gap-2 sm:flex">
-              <Button variant="secondary" asChild>
-                <Link href="/login">Login</Link>
-              </Button>
-              <Button asChild>
-                <Link href="/signup">Sign up</Link>
-              </Button>
+              {!isLoading &&
+                (authStatus.authenticated ? (
+                  <Button asChild>
+                    <Link
+                      href={dashboardUrl}
+                      className="flex items-center gap-2"
+                    >
+                      <LayoutDashboard className="size-4" />
+                      Go to Dashboard
+                    </Link>
+                  </Button>
+                ) : (
+                  <>
+                    <Button variant="secondary" asChild>
+                      <Link href="https://app.crisper.io/login">Login</Link>
+                    </Button>
+                    <Button asChild>
+                      <Link href="https://app.crisper.io/signup">Sign up</Link>
+                    </Button>
+                  </>
+                ))}
             </div>
 
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -249,16 +296,38 @@ export function Navbar() {
                 </nav>
 
                 <div className="flex flex-col gap-2 p-4 border-t mt-auto">
-                  <Button variant="secondary" asChild>
-                    <Link href="/login" onClick={() => setIsOpen(false)}>
-                      Login
-                    </Link>
-                  </Button>
-                  <Button asChild>
-                    <Link href="/signup" onClick={() => setIsOpen(false)}>
-                      Sign up
-                    </Link>
-                  </Button>
+                  {!isLoading &&
+                    (authStatus.authenticated ? (
+                      <Button asChild>
+                        <Link
+                          href={dashboardUrl}
+                          onClick={() => setIsOpen(false)}
+                          className="flex items-center gap-2"
+                        >
+                          <LayoutDashboard className="size-4" />
+                          Go to Dashboard
+                        </Link>
+                      </Button>
+                    ) : (
+                      <>
+                        <Button variant="secondary" asChild>
+                          <Link
+                            href="https://app.crisper.io/login"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            Login
+                          </Link>
+                        </Button>
+                        <Button asChild>
+                          <Link
+                            href="https://app.crisper.io/signup"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            Sign up
+                          </Link>
+                        </Button>
+                      </>
+                    ))}
                 </div>
               </SheetContent>
             </Sheet>
