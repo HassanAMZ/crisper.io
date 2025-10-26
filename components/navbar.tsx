@@ -204,10 +204,10 @@ export function Navbar() {
                 ) : (
                   <>
                     <Button variant="secondary" asChild>
-                      <Link href="https://app.crisper.io/login">Login</Link>
+                      <Link href="https://app.crisper.io/auth">Login</Link>
                     </Button>
                     <Button asChild>
-                      <Link href="https://app.crisper.io/signup">Sign up</Link>
+                      <Link href="https://app.crisper.io/auth">Sign up</Link>
                     </Button>
                   </>
                 ))}
